@@ -18,5 +18,13 @@ df.test_score = df.test_score.fillna(math.floor(df.test_score.median()))
 
 # print(df)
 
+df.experience = df.experience.apply(w2n.word_to_num)
+
+# print(df)
 
 
+model = LinearRegression()
+model.fit(df[['experience', 'test_score', 'interview_score']], df.salary)
+
+print(model.predict([[2, 9, 6]]))
+print(model.predict([[12, 10, 10]]))
